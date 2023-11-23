@@ -1,62 +1,14 @@
 // src/LocationsToAdopt.js
 
-import React, { useState } from 'react';
+import React from 'react';
 import locationData from './location.json';
 import './AdoptionLocation.css';
 
 function LocationsToAdopt() {
-  const [category, setCategory] = useState('dog_shelters');
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-
   const dogShelters = locationData.dog_shelters;
   const catShelters = locationData.cat_shelters;
   const dogBreeders = locationData.dog_breeders;
   const catBreeders = locationData.cat_breeders;
-
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
-  };
-
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleAddressChange = (e) => {
-    setAddress(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePhoneNumberChange = (e) => {
-    setPhoneNumber(e.target.value);
-  };
-
-  const handleAddLocation = () => {
-    const newLocation = {
-      name: name,
-      address: address,
-      email: email,
-      phone_number: phoneNumber,
-    };
-
-    locationData[category].push(newLocation);
-
-    setName('');
-    setAddress('');
-    setEmail('');
-    setPhoneNumber('');
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleAddLocation();
-    }
-  };
 
   return (
     <div className="locations-container">
@@ -107,60 +59,6 @@ function LocationsToAdopt() {
             </div>
           ))}
         </div>
-      </div>
-      
-      <div className="add-location">
-        <h3>Add New Location</h3>
-        <div>
-          <label htmlFor="category">Category:</label>
-          <select id="category" value={category} onChange={handleCategoryChange}>
-            <option value="dog_shelters">Dog Shelters</option>
-            <option value="cat_shelters">Cat Shelters</option>
-            <option value="dog_breeders">Dog Breeders</option>
-            <option value="cat_breeders">Cat Breeders</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={handleNameChange}
-            onKeyPress={handleKeyPress} 
-          />
-        </div>
-        <div>
-          <label htmlFor="address">Address:</label>
-          <input
-            type="text"
-            id="address"
-            value={address}
-            onChange={handleAddressChange}
-            onKeyPress={handleKeyPress} 
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="text"
-            id="email"
-            value={email}
-            onChange={handleEmailChange}
-            onKeyPress={handleKeyPress} 
-          />
-        </div>
-        <div>
-          <label htmlFor="phoneNumber">Phone Number:</label>
-          <input
-            type="text"
-            id="phoneNumber"
-            value={phoneNumber}
-            onChange={handlePhoneNumberChange}
-            onKeyPress={handleKeyPress} 
-          />
-        </div>
-        <button onClick={handleAddLocation}>Add Location</button>
       </div>
     </div>
   );

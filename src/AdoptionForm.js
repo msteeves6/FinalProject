@@ -1,4 +1,3 @@
-// AdoptionForm.js
 import React, { useState } from 'react';
 import './AdoptionForm.css';
 
@@ -6,10 +5,10 @@ function AdoptionForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    animal: '', 
+    animal: '',
     message: '',
-    animalName: '', 
-    shelterLocation: '', 
+    animalName: '',
+    shelterLocation: '',
   });
 
   const handleChange = (e) => {
@@ -20,17 +19,35 @@ function AdoptionForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form data:', formData);
-    setFormData({
-      name: '',
-      email: '',
-      animal: '',
-      message: '',
-      animalName: '',
-      shelterLocation: '',
-    });
+
+    try {
+      const response = await fetch('/api/submit-adoption-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log('Form data submitted successfully');
+        // Reset the form after successful submission
+        setFormData({
+          name: '',
+          email: '',
+          animal: '',
+          message: '',
+          animalName: '',
+          shelterLocation: '',
+        });
+      } else {
+        console.error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+    }
   };
 
   return (
