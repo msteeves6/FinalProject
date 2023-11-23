@@ -2,7 +2,7 @@
 ## [Assignment #Final Project]
 ## [Submission date: 11/DD/23]
 ## Worked with/sources 
-* eW3 Schools
+* W3 Schools
 * Azure Resources
 * MongoDB Resources
 * Inclass Examples and Past Homework
