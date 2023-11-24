@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './AdoptionForm.css';
+import locationData from './location.json'; 
 
 function AdoptionForm() {
   const [formData, setFormData] = useState({
@@ -8,7 +9,7 @@ function AdoptionForm() {
     animal: '',
     message: '',
     animalName: '',
-    shelterLocation: '',
+    adoptionLocation: '', 
   });
 
   const handleChange = (e) => {
@@ -23,7 +24,7 @@ function AdoptionForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch('/api/submit-adoption-form', {
+      const response = await fetch('http://localhost:5000/api/submit-adoption-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,14 +34,13 @@ function AdoptionForm() {
 
       if (response.ok) {
         console.log('Form data submitted successfully');
-        // Reset the form after successful submission
         setFormData({
           name: '',
           email: '',
           animal: '',
           message: '',
           animalName: '',
-          shelterLocation: '',
+          adoptionLocation: '', 
         });
       } else {
         console.error('Form submission failed');
@@ -97,17 +97,6 @@ function AdoptionForm() {
               type="text"
               name="animalName"
               value={formData.animalName}
-              onChange={handleChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Shelter Location:
-            <input
-              type="text"
-              name="shelterLocation"
-              value={formData.shelterLocation}
               onChange={handleChange}
             />
           </label>
