@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './AdoptionForm.css';
-import locationData from './location.json'; 
 
 function AdoptionForm() {
   const [formData, setFormData] = useState({
